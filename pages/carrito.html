@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras | TechStore Online</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <h1>TechStore</h1>
+            </div>
+            <nav class="header__nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="../index.html" class="nav__link">Inicio</a></li>
+                    <li class="nav__item"><a href="catalogo.html" class="nav__link">Catálogo</a></li>
+                    <li class="nav__item"><a href="nosotros.html" class="nav__link">Nosotros</a></li>
+                    <li class="nav__item"><a href="contacto.html" class="nav__link">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header__user-actions">
+                <button id="login-btn" class="btn btn--login">Iniciar Sesión</button>
+                <button id="register-btn" class="btn btn--register">Registrarse</button>
+                <div class="cart">
+                    <a href="carrito.html" class="cart__link">
+                        <span class="cart__icon">🛒</span>
+                        <span id="cart-count" class="cart__count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="cart-page">
+            <div class="container">
+                <h1 class="page-title">Carrito de Compras</h1>
+                
+                <div id="cart-empty" class="cart-empty hidden">
+                    <p>Tu carrito está vacío</p>
+                    <a href="catalogo.html" class="btn">Ver productos</a>
+                </div>
+                
+                <div id="cart-content" class="cart-content">
+                    <div class="cart__items">
+                        <table class="cart-table">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Subtotal</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart-items">
+                                <!-- Items del carrito generados con JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="cart__summary">
+                        <div class="cart__summary-content">
+                            <h2 class="summary-title">Resumen de compra</h2>
+                            
+                            <div class="summary__details">
+                                <div class="summary__row">
+                                    <span>Subtotal:</span>
+                                    <span id="cart-subtotal">$0.00</span>
+                                </div>
+                                <div class="summary__row">
+                                    <span>Impuestos (19%):</span>
+                                    <span id="cart-tax">$0.00</span>
+                                </div>
+                                <div class="summary__row">
+                                    <span>Envío:</span>
+                                    <span id="cart-shipping">$0.00</span>
+                                </div>
+                                <div class="summary__row summary__total">
+                                    <span>Total:</span>
+                                    <span id="cart-total">$0.00</span>
+                                </div>
+                            </div>
+                            
+                            <div class="summary__actions">
+                                <button id="vaciar-carrito" class="btn btn--outline">Vaciar carrito</button>
+                                <button id="continuar-compra" class="btn">Continuar compra</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__column">
+                    <h3 class="footer__title">TechStore Online</h3>
+                    <p>Tu tienda de tecnología de confianza por más de 10 años.</p>
+                </div>
+                <div class="footer__column">
+                    <h3 class="footer__title">Enlaces</h3>
+                    <ul class="footer__links">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h3 class="footer__title">Contacto</h3>
+                    <p>Email: info@techstore.com</p>
+                    <p>Teléfono: (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2023 TechStore Online. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Login -->
+    <div id="login-modal" class="modal">
+        <div class="modal__content">
+            <span class="modal__close">&times;</span>
+            <h2 class="modal__title">Iniciar Sesión</h2>
+            <form id="login-form" class="form">
+                <div class="form__group">
+                    <label for="login-email" class="form__label">Email:</label>
+                    <input type="email" id="login-email" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="login-password" class="form__label">Contraseña:</label>
+                    <input type="password" id="login-password" class="form__input" required>
+                </div>
+                <button type="submit" class="form__button btn">Iniciar Sesión</button>
+                <p class="form__text">¿Olvidaste tu contraseña? <a href="#" id="forgot-password">Recuperar</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Registro -->
+    <div id="register-modal" class="modal">
+        <div class="modal__content">
+            <span class="modal__close">&times;</span>
+            <h2 class="modal__title">Registrarse</h2>
+            <form id="register-form" class="form">
+                <div class="form__group">
+                    <label for="register-name" class="form__label">Nombre:</label>
+                    <input type="text" id="register-name" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="register-email" class="form__label">Email:</label>
+                    <input type="email" id="register-email" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="register-password" class="form__label">Contraseña:</label>
+                    <input type="password" id="register-password" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="register-confirm-password" class="form__label">Confirmar Contraseña:</label>
+                    <input type="password" id="register-confirm-password" class="form__input" required>
+                </div>
+                <button type="submit" class="form__button btn">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Checkout -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal__content modal__content--large">
+            <span class="modal__close">&times;</span>
+            <h2 class="modal__title">Completar Compra</h2>
+            
+            <div class="checkout-steps">
+                <div class="step step--active" data-step="1">
+                    <span class="step__number">1</span>
+                    <span class="step__name">Datos de envío</span>
+                </div>
+                <div class="step" data-step="2">
+                    <span class="step__number">2</span>
+                    <span class="step__name">Método de pago</span>
+                </div>
+                <div class="step" data-step="3">
+                    <span class="step__number">3</span>
+                    <span class="step__name">Confirmación</span>
+                </div>
+            </div>
+            
+            <div class="checkout-forms">
+                <!-- Paso 1: Datos de envío -->
+                <form id="shipping-form" class="form checkout-form checkout-form--active" data-step="1">
+                    <div class="form__group">
+                        <label for="shipping-name" class="form__label">Nombre completo:</label>
+                        <input type="text" id="shipping-name" class="form__input" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="shipping-address" class="form__label">Dirección:</label>
+                        <input type="text" id="shipping-address" class="form__input" required>
+                    </div>
+                    <div class="form__row">
+                        <div class="form__group">
+                            <label for="shipping-city" class="form__label">Ciudad:</label>
+                            <input type="text" id="shipping-city" class="form__input" required>
+                        </div>
+                        <div class="form__group">
+                            <label for="shipping-zip" class="form__label">Código postal:</label>
+                            <input type="text" id="shipping-zip" class="form__input" required>
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <label for="shipping-phone" class="form__label">Teléfono:</label>
+                        <input type="tel" id="shipping-phone" class="form__input" required>
+                    </div>
+                    <div class="form__actions">
+                        <button type="button" class="btn" id="shipping-next">Continuar</button>
+                    </div>
+                </form>
+                
+                <!-- Paso 2: Método de pago -->
+                <form id="payment-form" class="form checkout-form" data-step="2">
+                    <div class="form__group">
+                        <label class="form__label">Método de pago:</label>
+                        <div class="payment-methods">
+                            <label class="payment-method">
+                                <input type="radio" name="payment-method" value="card" checked>
+                                <span class="payment-method__name">Tarjeta de crédito</span>
+                            </label>
+                            <label class="payment-method">
+                                <input type="radio" name="payment-method" value="transfer">
+                                <span class="payment-method__name">Transferencia bancaria</span>
+                            </label>
+                            <label class="payment-method">
+                                <input type="radio" name="payment-method" value="cash">
+                                <span class="payment-method__name">Pago contraentrega</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Campos para tarjeta de crédito -->
+                    <div id="card-fields">
+                        <div class="form__group">
+                            <label for="card-number" class="form__label">Número de tarjeta:</label>
+                            <input type="text" id="card-number" class="form__input" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form__row">
+                            <div class="form__group">
+                                <label for="card-expiry" class="form__label">Fecha de expiración:</label>
+                                <input type="text" id="card-expiry" class="form__input" placeholder="MM/AA">
+                            </div>
+                            <div class="form__group">
+                                <label for="card-cvv" class="form__label">CVV:</label>
+                                <input type="text" id="card-cvv" class="form__input" placeholder="123">
+                            </div>
+                        </div>
+                        <div class="form__group">
+                            <label for="card-name" class="form__label">Nombre en la tarjeta:</label>
+                            <input type="text" id="card-name" class="form__input">
+                        </div>
+                    </div>
+                    
+                    <div class="form__actions">
+                        <button type="button" class="btn btn--outline" id="payment-prev">Atrás</button>
+                        <button type="button" class="btn" id="payment-next">Continuar</button>
+                    </div>
+                </form>
+                
+                <!-- Paso 3: Confirmación -->
+                <div id="confirmation" class="checkout-form" data-step="3">
+                    <div class="confirmation__content">
+                        <h3 class="confirmation__title">Resumen de tu pedido</h3>
+                        
+                        <div class="confirmation__details">
+                            <div class="confirmation__section">
+                                <h4>Datos de envío</h4>
+                                <p id="confirm-address"></p>
+                                <p id="confirm-city-zip"></p>
+                                <p id="confirm-phone"></p>
+                            </div>
+                            
+                            <div class="confirmation__section">
+                                <h4>Método de pago</h4>
+                                <p id="confirm-payment"></p>
+                            </div>
+                            
+                            <div class="confirmation__section">
+                                <h4>Productos</h4>
+                                <ul id="confirm-products"></ul>
+                            </div>
+                            
+                            <div class="confirmation__total">
+                                <p>Total a pagar: <span id="confirm-total"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form__actions">
+                        <button type="button" class="btn btn--outline" id="confirmation-prev">Atrás</button>
+                        <button type="button" class="btn" id="complete-purchase">Completar compra</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de compra exitosa -->
+    <div id="success-modal" class="modal">
+        <div class="modal__content">
+            <span class="modal__close">&times;</span>
+            <div class="success-message">
+                <div class="success-icon">✓</div>
+                <h2 class="success-title">¡Compra exitosa!</h2>
+                <p class="success-text">Tu pedido ha sido procesado correctamente.</p>
+                <p class="success-order">Número de orden: <span id="order-number"></span></p>
+                <p>Te hemos enviado un correo con los detalles de tu compra.</p>
+                <a href="../index.html" class="btn">Volver al inicio</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/products.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html> 

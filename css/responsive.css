@@ -1,0 +1,221 @@
+/* Media Queries */
+
+/* Tablets (hasta 992px) */
+@media (max-width: 992px) {
+    .header__container {
+        padding: var(--spacing-md) var(--spacing-md);
+    }
+    
+    .nav__list {
+        gap: var(--spacing-md);
+    }
+    
+    .banner__title {
+        font-size: 2rem;
+    }
+    
+    .catalog__wrapper {
+        grid-template-columns: 200px 1fr;
+    }
+    
+    .cart-content {
+        grid-template-columns: 1.5fr 1fr;
+    }
+}
+
+/* Tablets pequeñas (hasta 768px) */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+    
+    .header__container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .header__nav {
+        order: 3;
+        width: 100%;
+        margin-top: var(--spacing-md);
+    }
+    
+    .nav__list {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .banner {
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .banner__title {
+        font-size: 1.8rem;
+    }
+    
+    .catalog__wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .filters {
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .catalog__top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .catalog__search {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .catalog__sort {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .cart-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .cart__items {
+        margin-bottom: var(--spacing-lg);
+        overflow-x: auto;
+    }
+    
+    .cart-table {
+        min-width: 600px;
+    }
+    
+    .footer__grid {
+        gap: var(--spacing-lg);
+    }
+}
+
+/* Móviles (hasta 576px) */
+@media (max-width: 576px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .header__container {
+        padding: var(--spacing-sm) var(--spacing-sm);
+    }
+    
+    .header__logo h1 {
+        font-size: var(--font-size-lg);
+    }
+    
+    .nav__list {
+        overflow-x: auto;
+        padding-bottom: var(--spacing-xs);
+        justify-content: flex-start;
+        gap: var(--spacing-md);
+    }
+    
+    .banner {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .banner__title {
+        font-size: 1.5rem;
+    }
+    
+    .banner__text {
+        font-size: var(--font-size-md);
+    }
+    
+    .banner__btn {
+        font-size: var(--font-size-md);
+        padding: var(--spacing-sm) var(--spacing-lg);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-lg);
+    }
+    
+    .page-title {
+        font-size: var(--font-size-xl);
+        margin: var(--spacing-lg) 0;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .product-card__title {
+        font-size: var(--font-size-md);
+    }
+    
+    .categories__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .modal__content {
+        padding: var(--spacing-lg);
+        width: 95%;
+    }
+    
+    .form__row {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .checkout-steps {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .step {
+        border-left: 3px solid var(--color-gray-light);
+        padding-left: var(--spacing-sm);
+    }
+    
+    .step--active {
+        border-left-color: var(--color-primary);
+    }
+    
+    .form__actions {
+        flex-direction: column;
+    }
+}
+
+/* Animaciones y transiciones para mejorar la experiencia */
+@media (prefers-reduced-motion: no-preference) {
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .category-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .btn {
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .nav__link::after {
+        transition: width 0.3s ease;
+    }
+    
+    .modal__content {
+        animation: modalFadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .product-card, .category-card {
+        animation: fadeIn 0.5s ease;
+    }
+} 

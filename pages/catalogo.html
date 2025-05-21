@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | TechStore Online</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <h1>TechStore</h1>
+            </div>
+            <nav class="header__nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="../index.html" class="nav__link">Inicio</a></li>
+                    <li class="nav__item"><a href="catalogo.html" class="nav__link">Catálogo</a></li>
+                    <li class="nav__item"><a href="nosotros.html" class="nav__link">Nosotros</a></li>
+                    <li class="nav__item"><a href="contacto.html" class="nav__link">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="header__user-actions">
+                <button id="login-btn" class="btn btn--login">Iniciar Sesión</button>
+                <button id="register-btn" class="btn btn--register">Registrarse</button>
+                <div class="cart">
+                    <a href="carrito.html" class="cart__link">
+                        <span class="cart__icon">🛒</span>
+                        <span id="cart-count" class="cart__count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="catalog">
+            <div class="container">
+                <h1 class="page-title">Catálogo de Productos</h1>
+                
+                <div class="catalog__wrapper">
+                    <!-- Filtros -->
+                    <aside class="filters">
+                        <h2 class="filters__title">Filtros</h2>
+                        
+                        <div class="filter__group">
+                            <h3 class="filter__subtitle">Categorías</h3>
+                            <div class="filter__options">
+                                <label class="filter__option">
+                                    <input type="radio" name="categoria" value="todos" checked> Todos
+                                </label>
+                                <label class="filter__option">
+                                    <input type="radio" name="categoria" value="tecnologia"> Tecnología
+                                </label>
+                                <label class="filter__option">
+                                    <input type="radio" name="categoria" value="accesorios"> Accesorios
+                                </label>
+                                <label class="filter__option">
+                                    <input type="radio" name="categoria" value="hogar"> Hogar
+                                </label>
+                                <label class="filter__option">
+                                    <input type="radio" name="categoria" value="moda"> Moda
+                                </label>
+                                <label class="filter__option">
+                                    <input type="radio" name="categoria" value="salud"> Salud
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="filter__group">
+                            <h3 class="filter__subtitle">Precio</h3>
+                            <div class="filter__range">
+                                <input type="range" id="precio-min" min="0" max="1000" step="10" value="0">
+                                <div class="filter__range-values">
+                                    <span id="precio-min-value">$0</span>
+                                    <span id="precio-max-value">$1000</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="aplicar-filtros" class="btn btn--filter">Aplicar filtros</button>
+                    </aside>
+                    
+                    <!-- Productos -->
+                    <div class="catalog__products">
+                        <div class="catalog__top">
+                            <div class="catalog__search">
+                                <input type="text" id="search-input" placeholder="Buscar productos..." class="search__input">
+                                <button id="search-btn" class="search__button">🔍</button>
+                            </div>
+                            <div class="catalog__sort">
+                                <label for="sort-select">Ordenar por:</label>
+                                <select id="sort-select" class="sort__select">
+                                    <option value="relevancia">Relevancia</option>
+                                    <option value="precio-asc">Precio: menor a mayor</option>
+                                    <option value="precio-desc">Precio: mayor a menor</option>
+                                    <option value="nombre-asc">Nombre: A-Z</option>
+                                    <option value="nombre-desc">Nombre: Z-A</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="products-grid" id="productos-container">
+                            <!-- Los productos se cargarán dinámicamente con JavaScript -->
+                        </div>
+                        
+                        <div class="catalog__pagination">
+                            <button class="pagination__btn" id="prev-page">Anterior</button>
+                            <div id="pagination-numbers" class="pagination__numbers">
+                                <!-- Números de página generados con JS -->
+                            </div>
+                            <button class="pagination__btn" id="next-page">Siguiente</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__column">
+                    <h3 class="footer__title">TechStore Online</h3>
+                    <p>Tu tienda de tecnología de confianza por más de 10 años.</p>
+                </div>
+                <div class="footer__column">
+                    <h3 class="footer__title">Enlaces</h3>
+                    <ul class="footer__links">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer__column">
+                    <h3 class="footer__title">Contacto</h3>
+                    <p>Email: info@techstore.com</p>
+                    <p>Teléfono: (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2023 TechStore Online. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Login -->
+    <div id="login-modal" class="modal">
+        <div class="modal__content">
+            <span class="modal__close">&times;</span>
+            <h2 class="modal__title">Iniciar Sesión</h2>
+            <form id="login-form" class="form">
+                <div class="form__group">
+                    <label for="login-email" class="form__label">Email:</label>
+                    <input type="email" id="login-email" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="login-password" class="form__label">Contraseña:</label>
+                    <input type="password" id="login-password" class="form__input" required>
+                </div>
+                <button type="submit" class="form__button btn">Iniciar Sesión</button>
+                <p class="form__text">¿Olvidaste tu contraseña? <a href="#" id="forgot-password">Recuperar</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Registro -->
+    <div id="register-modal" class="modal">
+        <div class="modal__content">
+            <span class="modal__close">&times;</span>
+            <h2 class="modal__title">Registrarse</h2>
+            <form id="register-form" class="form">
+                <div class="form__group">
+                    <label for="register-name" class="form__label">Nombre:</label>
+                    <input type="text" id="register-name" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="register-email" class="form__label">Email:</label>
+                    <input type="email" id="register-email" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="register-password" class="form__label">Contraseña:</label>
+                    <input type="password" id="register-password" class="form__input" required>
+                </div>
+                <div class="form__group">
+                    <label for="register-confirm-password" class="form__label">Confirmar Contraseña:</label>
+                    <input type="password" id="register-confirm-password" class="form__input" required>
+                </div>
+                <button type="submit" class="form__button btn">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Template para producto -->
+    <template id="product-template">
+        <div class="product-card">
+            <div class="product-card__img-container">
+                <img src="" alt="" class="product-card__img">
+            </div>
+            <div class="product-card__content">
+                <h3 class="product-card__title"></h3>
+                <p class="product-card__price"></p>
+                <p class="product-card__stock"></p>
+                <button class="product-card__btn btn">Agregar al carrito</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Scripts -->
+    <script src="../js/products.js"></script>
+    <script src="../js/catalog.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html> 
